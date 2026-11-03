@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+data/
+evaluation/datasets/
+evaluation/results/
+taxonomy/
+*.log

@@ -1,0 +1,28 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>식품 제조 LAM — 의도 분류 테스트</title><link rel="stylesheet" href="/static/app.css"><script defer src="/static/app.js"></script><script defer src="/static/chatbot.js"></script></head><body><main>
+<header><small>FOOD MANUFACTURING · CLASSIFICATION ONLY</small><h1>의도 분류체계 2차정리 · 검토안</h1><p>질문을 분류합니다. 실제 답변·계획·검색·예측·설비 실행은 생성하지 않습니다.</p></header>
+<nav class="tabs" role="tablist" aria-label="작업 모드">
+<button type="button" role="tab" id="tab-test" aria-controls="panel-test" aria-selected="true">분류 테스트</button>
+<button type="button" role="tab" id="tab-chat" aria-controls="panel-chat" aria-selected="false" tabindex="-1">챗봇</button>
+</nav>
+<div id="panel-test" role="tabpanel" aria-labelledby="tab-test">
+<section><h2>실행 구성</h2><button id="refresh" type="button">가용 상태 확인</button><p id="health" role="status">설정 확인 중</p><div id="backends"></div><label for="target">모델 구성<select id="target"></select></label><p id="availability"></p></section>
+<section><form id="form"><label for="question">분류할 사용자 질문</label><textarea id="question" required maxlength="4000" rows="4" placeholder="사용자 질문만 입력하세요."></textarea><button id="submit">분류 실행</button></form><p id="busy" role="status"></p><div id="result" aria-live="polite"></div><p id="meta"></p><details><summary>모델 원본 JSON · 별도 추론 · 요청 · 시간</summary><pre id="raw"></pre></details></section>
+<section><h2>2차정리 저장 평가</h2><p>결과 조회는 모델을 호출하거나 서비스를 전환하지 않습니다.</p><button id="load-evaluations">평가 목록 새로고침</button><div id="evaluations"></div><pre id="report"></pre></section>
+</div>
+<div id="panel-chat" role="tabpanel" aria-labelledby="tab-chat" hidden>
+<section>
+<h2>챗봇 — 요청 의도 분석과 분류 설명</h2>
+<p class="notice">의도 분석·분류 설명 전용 — 실제 업무 처리는 수행하지 않음<br>의도 분류체계 2차정리 · 미확정 검토안</p>
+<div class="chat-toolbar"><button id="chat-new" type="button">새 대화 시작</button><label for="chat-sessions">저장 대화</label><select id="chat-sessions"></select><button id="chat-more" type="button">이전 대화 더 보기</button><a id="chat-export" hidden>대화 JSONL 내보내기</a></div>
+<p id="chat-session" class="chat-meta"></p>
+<div id="chat-messages" role="log" aria-live="polite" aria-label="대화 메시지"></div>
+<form id="chat-form">
+<label for="chat-question">사용자 질문</label>
+<textarea id="chat-question" aria-describedby="chat-input-help" maxlength="4000" required rows="3" placeholder="원하는 업무를 설명해 주세요. 실제 업무는 수행하지 않고 의도를 설명합니다."></textarea>
+<small id="chat-input-help">Enter 전송 · Shift+Enter 줄바꿈 · 한글 조합 중 Enter는 전송하지 않음</small><button id="chat-send" type="submit">전송</button><button id="chat-cancel" type="button" disabled>응답 중단</button><button id="chat-retry" type="button" hidden>전송 확인·복구 (같은 요청 ID)</button>
+</form>
+<p id="chat-busy" role="status"></p><p id="chat-error" class="error" role="alert"></p>
+<small>최근 최대 8개 교환의 원문(12,000자 제한)과 검증된 해석·활성 슬롯을 제한해 전달합니다. 모델 해석은 확인된 업무 사실이 아닙니다. 모의 도구 구성 · 실제 실행 안 함. 연결 중단 시 부분 응답을 보존하며 자동 재생성하지 않습니다.</small>
+</section>
+</div>
+<footer>합성 의도 분류 테스트입니다. 검토안 분류 성적은 실제 제조 답변이나 현장 일반화 정확도를 보장하지 않습니다.</footer></main></body></html>
